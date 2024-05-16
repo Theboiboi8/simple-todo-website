@@ -23,20 +23,12 @@ if (props.sectionType == TodoStatus.Completed) {
 const todoEntriesStore = useTodoEntriesStore();
 
 let entries = ref(todoEntriesStore.todoEntries);
-
-function addTodoItem(status: TodoStatus) {
-    todoEntriesStore.addTodoEntry("Test", status);
-    console.table(entries.value);
-}
 </script>
 
 <template>
 	<section class="todo-section-container">
 		<h2>
             {{ title }}
-            <AccentButton class="add_button" @click="addTodoItem(sectionType)">
-                <IconPlus class="icon"/>
-            </AccentButton>
         </h2>
         <div class="scroll_container_todo">
             <p v-for="(entry, index) in entries.filter((entry) => entry.status == props.sectionType)">

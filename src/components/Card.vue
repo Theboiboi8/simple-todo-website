@@ -1,18 +1,31 @@
 <script setup lang="ts">
-import { TodoStatus } from '@/custom_types';
+import { TodoStatus, type TodoEntry } from '@/custom_types';
 import IconStatusIndicator from './icons/IconStatusIndicator.vue';
+import { useTodoEntriesStore } from '@/stores/todo_entries';
+import { ref } from 'vue';
 
 let props = defineProps<{
     name: string
     status: TodoStatus
 }>();
+
+const todoEntriesStore = useTodoEntriesStore();
+
+let entries = ref(todoEntriesStore.todoEntries);
+
+function remove_todo_item() {
+    const name: string = props.name;
+    const status: TodoStatus = props.status
+
+    todoEntriesStore.removeTodoEntry({ name, status } as TodoEntry);
+}
 </script>
 
 <template>
     <div class="todo_card_container">
         <div class="todo_card_inside_container">
             <h3>{{ props.name }}</h3>
-            <IconStatusIndicator :status="props.status" />
+            <IconStatusIndicator :status="props.status" @click="remove_todo_item"/>
         </div>
     </div>
 </template>
@@ -35,6 +48,7 @@ let props = defineProps<{
 
     h3 {
         font-weight: 700;
+        max-width: 90%;
     }
 }
 </style>

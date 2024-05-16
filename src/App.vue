@@ -42,7 +42,12 @@ function close_dialog() {
 	<main class="main">
 		<div class="container">
 			<RouterView />
-			<CustomDialog :dialog-type="type" :title="title" v-if="dialogOpen" @close="close_dialog"/>
+			<CustomDialog
+				:dialog-type="type"
+				:title="title"
+				v-if="dialogOpen"
+				@close="close_dialog"
+			/>
 		</div>
 	</main>
 </template>

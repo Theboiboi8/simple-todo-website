@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { DialogType, type TodoEntry, type TodoStatus } from '@/custom_types';
+import { DialogType, TodoStatus, type TodoEntry } from '@/custom_types';
 import AccentButton from './AccentButton.vue';
 import OutlineButton from './OutlineButton.vue';
 import { useTodoEntriesStore } from '@/stores/todo_entries';
@@ -14,6 +14,10 @@ let props = defineProps<{
 let emit = defineEmits<{
     (e: 'close'): void
 }>();
+
+let todo_name = ref('');
+
+let todo_status = ref(TodoStatus.Completed);
 
 const todoEntriesStore = useTodoEntriesStore();
 
@@ -36,23 +40,36 @@ const isRemove = (type: DialogType) => {
         return false
     }
 }
+
+const isCreate = (type: DialogType) => {
+    if (type === DialogType.Create) {
+        return true
+    } else {
+        return false
+    }
+}
+
+function submit(name: string, status: TodoStatus) {
+    addTodoItem(name, status);
+    emit('close');
+}
 </script>
 
 <template>
     <div class="backdrop_container">
         <div class="dialog_container">
             <h1>{{ props.title }}</h1>
-            <div class="inputs" v-if="!isRemove(dialogType)">
+            <div class="inputs">
                 <div class="name_input">
                     Name:&NonBreakingSpace;
-                    <input />
+                    <input placeholder="Name..." v-model="todo_name"/>
                 </div>
                 <div class="status_input">
                     Status:&NonBreakingSpace;
-                    <select>
-                        <option value="complete">Completed</option>
-                        <option value="active">In Progress</option>
-                        <option value="unplanned">Not Planned</option>
+                    <select v-model="todo_status">
+                        <option :value="TodoStatus.Completed">Completed</option>
+                        <option :value="TodoStatus.InProgress">In Progress</option>
+                        <option :value="TodoStatus.NotPlanned">Not Planned</option>
                     </select>
                 </div>
             </div>
@@ -60,7 +77,7 @@ const isRemove = (type: DialogType) => {
                 <OutlineButton class="cancel_button" @click="emit('close')">
                     Cancel
                 </OutlineButton>
-                <AccentButton class="confirm_button" @click="">
+                <AccentButton class="confirm_button" @click="submit(todo_name, todo_status)">
                     Confirm
                 </AccentButton>
             </div>

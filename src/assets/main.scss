@@ -1,0 +1,22 @@
+@import './base.scss';
+
+#app {
+  width: 100dvw;
+  height: 100dvh;
+  border-radius: 0;
+  overflow: hidden;
+}
+
+a {
+  color: var(--accent-link);
+  text-decoration: underline solid var(--accent-link) .1em;
+  transition: all 150ms ease-in-out;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+@media (hover: hover) {
+  a:hover {
+    text-decoration-thickness: .25em;
+  }
+}

@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css?family=Inter');
+
+:root {
+	--c-green-indicator: #89b481;
+	--c-red-indicator: #d3869b;
+	--c-yellow-indicator: #d8a656;
+
+	/* accent colors */
+	--c-accent-1: #7caea3; /* links */
+	--c-accent-2: hsl(343.6, 46.7%, 67.6%); /* general accented elements */
+	--c-accent-3: hsl(343.6, 46.7%, 67.6%); /* accent buttons */
+	--c-accent-4: hsl(343.6, 46.7%, 67.6%); /* accent buttons when hovered */
+	--c-accent-5: hsl(343.6, 46.7%, 61.6%); /* accent buttons when clicked */
+
+	/* text colors */
+	--c-text-0: var(--c-bg-4); /* text on colored elements */
+	--c-text-1: var(--c-text-2); /* other normally white text */
+	--c-text-2: hsl(37, 40%, 84%); /* headings and important text */
+	--c-text-3: hsl(37, 40%, 72%); /* normal text */
+	--c-text-4: hsl(37, 20%, 60%); /* icon and buttons */
+
+	/* background and dark colors */
+	--c-bg-1: hsl(0, 0%, 25%); /* dark buttons when clicked */
+	--c-bg-2: hsl(20, 5%, 22%); /* dark buttons */
+	--c-bg-3: hsl(10, 3%, 20%); /* spacing, secondary elements */
+	--c-bg-4: hsl(0, 0%, 16%); /* main background color */
+	--c-hover: rgba(160, 130, 120, 0.1); /* buttons when hovered */
+	--c-active: rgba(160, 130, 120, 0.2); /* buttons when clicked or selected */
+
+	/* corner roundness (border-radius) */
+	--roundness-xl: 22px;
+	--roundness-l: 20px;
+	--roundness-m: 16px;
+	--roundness-s: 12px;
+	--roundness-xs: 10px;
+	--roundness-xxs: 8px;
+}
+
+:root {
+	--background: var(--c-bg-4);
+	--background-secondary: var(--c-bg-3);
+	--background-button: var(--c-bg-2);
+	--background-button-click: var(--c-bg-1);
+
+	--heading: var(--c-text-2);
+	--text: var(--c-text-3);
+	--text-colored: var(--c-text-0);
+	--text-white: var(--c-text-1);
+	--text-icons: var(--c-text-4);
+
+	--accent-link: var(--c-accent-1);
+	--accent-general: var(--c-accent-2);
+	--accent-button: var(--c-accent-3);
+	--accent-button-hover: var(--c-accent-4);
+	--accent-button-click: var(--c-accent-5);
+
+	--section-gap: 160px;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	margin: 0;
+	font-weight: normal;
+	color-scheme: dark;
+}
+
+body {
+	min-height: 100vh;
+	color: var(--text);
+	background: var(--background-secondary);
+	transition:
+		color 0.5s,
+		background-color 0.5s;
+	line-height: 1.4;
+	font-family:
+		Inter,
+		-apple-system,
+		BlinkMacSystemFont,
+		'Segoe UI',
+		Roboto,
+		Oxygen,
+		Ubuntu,
+		Cantarell,
+		'Fira Sans',
+		'Droid Sans',
+		'Helvetica Neue',
+		sans-serif;
+	font-optical-sizing: auto;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+	background-color: var(--accent-general);
+	color: var(--background);
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+	display: block;
+	max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+:focus-visible {
+	outline: .15em solid var(--accent-general);
+	outline-offset: 3px;
+	border-radius: var(--roundness-xxs);
+}
